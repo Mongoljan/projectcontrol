@@ -34,11 +34,11 @@ export default function Home() {
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
       <header className="flex items-center justify-between px-[5px] lg:px-[15%] h-[80px] bg-blue-500">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center ">
           <Image 
-            src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
+            src="https://lh3.googleusercontent.com/proxy/hj9d6nm3IGCIEcosEHIv9OZn7X2g00h3BHZES2TYLnA86vkeVul3kQFXFtD_eZO7Mc1sQT67sjLUnxL2pq9RaAdh5Ra07iFaZcFma_mPLw" 
             alt="Organization Logo" 
-            width={200} 
+            width={60} 
             height={80} 
           />
           <Image 
@@ -48,7 +48,7 @@ export default function Home() {
             height={80} 
           />
         </div>
-        <div className="text-white hidden lg:visible text-center">
+        <div className="text-white text-center">
           <h2 className="text-xl font-bold">Хакатон-2024</h2>
           <p className="text-sm italic">"Project Control"</p>
         </div>
