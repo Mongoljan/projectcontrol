@@ -28,13 +28,13 @@ export default function Home() {
 
       {/* Title Section */}
       <main className="flex flex-col items-center justify-center px-4 py-16 h-[80vh] mt-[80px]">
-        <div className="text-center py-10 bg-white rounded-[20px] shadow-lg max-w-2xl w-full">
+        <div className="text-center py-10 bg-white rounded-[10px] shadow-lg max-w-2xl w-full">
           <h1 className="text-[36px] md:text-[46px] font-bold">Хакатон - 2024</h1>
           <h2 className="text-xl md:text-2xl font-medium mt-4">Project Control</h2>
           <div className="flex justify-center mt-12">
             <a href="/main" className="inline-block">
               <button className="bg-blue-500 hover:bg-blue-600 transition-colors text-white py-4 px-10 md:py-5 md:px-16 rounded-lg text-lg shadow-lg">
-                Нэвтрэх
+                Хүсэлт илгээх
               </button>
             </a>
           </div>

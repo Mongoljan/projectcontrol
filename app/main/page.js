@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { useState } from "react";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 export default function Home() {
   const [insurance, setInsurance] = useState("");
@@ -32,7 +33,7 @@ export default function Home() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="flex items-center justify-between px-[15%] h-[80px] bg-blue-500">
+      <header className="flex items-center justify-between px-[5px] lg:px-[15%] h-[80px] bg-blue-500">
         <div className="flex items-center space-x-4">
           <Image 
             src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
@@ -47,14 +48,19 @@ export default function Home() {
             height={80} 
           />
         </div>
-        <div className="text-white text-center">
+        <div className="text-white hidden lg:visible text-center">
           <h2 className="text-xl font-bold">Хакатон-2024</h2>
           <p className="text-sm italic">"Project Control"</p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="py-16 px-[15%] min-h-[75vh]">
+      <a href={"./"}>
+      <div className="text-black flex underline " >
+      <IoArrowBackCircleSharp className="mt-1 text-[20px]" />    Нүүр хуудас
+      </div>
+      </a>
+      <main className="py-16 lg:px-[15%] px-[10px] min-h-[75vh]">
         <h1 className="text-black text-4xl font-bold text-center">Ослын талаарх хүсэлт</h1>
         <p className="text-gray-700 text-center mt-4">
         Осол, аваартай холбоотой бичлэгийг оруулна уу?
