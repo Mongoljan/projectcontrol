@@ -2,40 +2,45 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100 text-black">
+      {/* Header Section */}
+      <header className="flex items-center justify-between px-[15%] h-[80px] bg-blue-500">
+        <div className="flex items-center space-x-4">
+          <Image 
+            src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
+            alt="Organization Logo" 
+            width={350} 
+            height={80} 
+          />
+          <Image 
+            src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png" 
+            alt="НБИХГ Logo" 
+            width={100} 
+            height={80} 
+          />
+        </div>
+        <div className="text-white text-center">
+          <h2 className="text-xl font-bold">Хакатон-2024</h2>
+          <p className="text-sm italic">"Project Control"</p>
+        </div>
+      </header>
 
-      <div className="flex px-[30%] justify-between">
-        
-  
-      <Image 
-        src="https://lh6.googleusercontent.com/proxy/OEXz491uVSzXWUlCtRhG0XYsFoD10MGbeSoa9hocLmPkXuFELtFHgAud_7bM6pQrvZ-h0bVUw3Qfn5TnOgL_grfFEpl4NGqNNQXy9tAOkOvQ-L4xh6cllztDEcZYfbN-7gv-Jl8" 
-        alt="Image description" 
-        width={100} 
-        height={100} 
-      />
-      <Image 
-      src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png"
-      alt="НБИХГ"
-      width={140}
-      height={100}
-  />
-          </div>
-          <div className="text-black flex justify-center mt-[50px] text-[42px]">
-           <div> Хакатон -2024
-           </div>
-      
-          </div>
-          <div className="flex text-black text-[42px] justify-center mt-[40px]">
-            Project Control
-           </div>
+      {/* Title Section */}
+      <div className="flex justify-center place-content-center">
+      <div className="text-center py-20 mt-16 bg-white rounded-[30px] shadow-md w-[800px] h-[300px] ">
+        <h1 className="text-[46px] font-bold">Хакатон - 2024</h1>
+        <h2 className="text-2xl font-medium mt-4">Project Control</h2>
+      </div>
+      </div>
 
-<div className="flex justify-end mx-[15%]">
-       <a href={"/main"}> <div className="button bg-blue-400 mt-[500px]  h-[50px] w-[200px] hover:bg-blue-600 text-[20px] rounded-lg text-center place-content-center ">
-            
-  Нэвтрэх
-           </div>
-           </a>   
-           </div>
+      {/* Button Section */}
+      <div className="flex justify-center mt-[500px]">
+        <a href="/main" className="inline-block">
+          <button className="bg-blue-500 hover:bg-blue-600 transition-colors text-white py-5 px-16 rounded-lg text-lg shadow-lg">
+            Нэвтрэх
+          </button>
+        </a>
+      </div>
     </div>
   );
 }

@@ -1,69 +1,146 @@
+'use client'
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [insurance, setInsurance] = useState("");
+  const [policeStation, setPoliceStation] = useState("");
+  const [video, setVideo] = useState(null);
+
+  const handleVideoUpload = (event) => {
+    setVideo(event.target.files[0]);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic
+    console.log({ insurance, policeStation, video });
+  };
+
   return (
-    <div>
-              <div className="flex px-[15%] justify-between h-[80px] bg-blue-500">
+    <div className="bg-gray-100 min-h-screen">
+      {/* Header Section */}
+      <header className="flex items-center justify-between px-[15%] h-[80px] bg-blue-500">
+        <div className="flex items-center space-x-4">
+          <Image 
+            src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
+            alt="Organization Logo" 
+            width={350} 
+            height={80} 
+          />
+          <Image 
+            src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png" 
+            alt="НБИХГ Logo" 
+            width={100} 
+            height={80} 
+          />
+        </div>
+        <div className="text-white text-center">
+          <h2 className="text-xl font-bold">Хакатон-2024</h2>
+          <p className="text-sm italic">"Project Control"</p>
+        </div>
+      </header>
 
-<div className="flex">
-               <Image 
-        src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
-        alt="Image description" 
-        width={350} 
-        height={80} 
-      />
-      <Image 
-      src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png"
-      alt="НБИХГ"
-      width={100}
-      height={80}
-  /> 
-  </div>
-<div className="flex justify-around">
-<div className="place-content-center">
-  <div>
-    Хакатон-2024
+      {/* Main Content */}
+      <main className="py-16 px-[15%]">
+        <h1 className="text-black text-4xl font-bold text-center">Ослын талаарх хүсэлт</h1>
+        <p className="text-gray-700 text-center mt-4">
+        Осол, аваартай холбоотой бичлэгийг оруулна уу?
+        </p>
 
-
-  </div>
-  <div>
-    "Project Control"
-  </div>
-            
-  </div>
- <div className="text-start w-[400px] text-[26px]">
-    Замын хөдөлгөөний нэгдсэн мэдээллийн сан
-
- </div>
-
-</div>
-</div>
-      <div className="flex px-[30%] justify-between">
-        
-  
-      <Image 
-        src="https://lh6.googleusercontent.com/proxy/OEXz491uVSzXWUlCtRhG0XYsFoD10MGbeSoa9hocLmPkXuFELtFHgAud_7bM6pQrvZ-h0bVUw3Qfn5TnOgL_grfFEpl4NGqNNQXy9tAOkOvQ-L4xh6cllztDEcZYfbN-7gv-Jl8" 
-        alt="Image description" 
-        width={100} 
-        height={100} 
-      />
-      <Image 
-      src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png"
-      alt="НБИХГ"
-      width={140}
-      height={100}
-  />
+        {/* Form Section */}
+        <form onSubmit={handleSubmit} className="mt-12 bg-white p-8 rounded shadow-md">
+          {/* Video Upload */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="video">
+              Ослын талаарх бичлэг 
+            </label>
+            <input
+              type="file"
+              id="video"
+              accept="video/*"
+              onChange={handleVideoUpload}
+              className="block w-full border rounded p-2"
+            />
           </div>
-          <div className="text-black flex justify-center mt-[50px] text-[42px]">
-           <div> Хакатон -2024
-           </div>
-      
+
+          {/* Insurance Dropdown */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="insurance">
+              Даатгалын компани сонгох
+            </label>
+            <select
+              id="insurance"
+              value={insurance}
+              onChange={(e) => setInsurance(e.target.value)}
+              className="block w-full border rounded p-2"
+            >
+              <option value="">-- Даатгалын компани сонгох --</option>
+              <option value="Монгол даатгал">Монгол даатгал</option>
+              <option value="Миг даатгал">Миг даатгал</option>
+              <option value="УБ даатгал">УБ даатгал</option>
+              <option value="Мандал даатгал">Мандал даатгал</option>
+              <option value="Ард даатгал">Ард даатгал</option>
+              <option value="Тэнгэр даатгал">Тэнгэр даатгал</option>
+              <option value="Богд даатгал">Богд даатгал</option>
+            </select>
           </div>
-          <div className="flex text-black text-[42px] justify-center mt-[40px]">
-            Project Control
-           </div>
 
+          {/* Police Station Dropdown */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="policeStation">
+              Замын цагдаагийн хэлтэс
+            </label>
+            <select
+              id="policeStation"
+              value={policeStation}
+              onChange={(e) => setPoliceStation(e.target.value)}
+              className="block w-full border rounded p-2"
+            >
+              <option value="">-- Цагдаагийн газар сонгох --</option>
+              <option value="БЗД ЗЦГ">БЗД ЗЦГ</option>
+              <option value="БГД ЗЦГ">БГД ЗЦГ</option>
+              <option value="СБД ЗЦГ">СБД ЗЦГ</option>
+              <option value="СХД ЗЦГ">СХД ЗЦГ</option>
+              <option value="ЧД ЗЦГ">ЧД ЗЦГ</option>
+              <option value="Налайх ЗЦГ">Налайх ЗЦГ</option>
+            </select>
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="Unelgee">
+              Үнэлгээний газар 
+            </label>
+            <select
+              id="Unelgee"
+              value={policeStation}
+              onChange={(e) => setPoliceStation(e.target.value)}
+              className="block w-full border rounded p-2"
+            >
+              <option value="">-- Үнэлгээний газар сонгох --</option>
+              <option value="Khasunelgee">Хас үнэлгээ</option>
+              <option value="Ashidunelgee">Ашид үнэлгээ</option>
+              <option value="Sundunelgee">Сүнд үнэлгээ</option>
+              <option value="Tentsverunelgee">Тэнцвэр үнэлгээ</option>
+              <option value="Ontsgoiungelgee">Онцгой үнэлгээ</option>
+            </select>
+          </div>
 
+          {/* Submit Button */}
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Илгээх
+            </button>
+          </div>
+        </form>
+      </main>
+
+      {/* Footer Section */}
+      <footer className="mt-[150px] bg-blue-500 py-4 text-center text-white">
+        <p className="text-sm">&copy; 2024 Замын Хөдөлгөөний Нэгдсэн Мэдээллийн Сан. Бүх эрх хуулиар хамгаалагдсан.</p>
+      </footer>
     </div>
   );
 }
