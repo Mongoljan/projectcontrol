@@ -5,22 +5,20 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 text-black">
       {/* Header Section */}
       <header className="flex items-center justify-between px-6 md:px-[10%] h-[80px] bg-blue-500 shadow-md">
-        <div className="flex items-center space-x-4">
+
           <Image 
-            src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
+            src="https://lh3.googleusercontent.com/proxy/hj9d6nm3IGCIEcosEHIv9OZn7X2g00h3BHZES2TYLnA86vkeVul3kQFXFtD_eZO7Mc1sQT67sjLUnxL2pq9RaAdh5Ra07iFaZcFma_mPLw" 
             alt="Organization Logo" 
-            width={250} 
+            width={60} 
             height={80} 
-            className="object-contain"
           />
           <Image 
             src="https://bida.ub.gov.mn/media/logo%20bosoo%20PNG.png" 
             alt="НБИХГ Logo" 
             width={100} 
-            height={40} 
-            className="object-contain"
+            height={80} 
           />
-        </div>
+ 
         <div className="text-white hidden md:block text-center">
 
         </div>

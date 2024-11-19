@@ -2,13 +2,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const [insurance, setInsurance] = useState("");
   const [policeStation, setPoliceStation] = useState("");
   const [video, setVideo] = useState(null);
   const [images, setImages] = useState([]);
-
 
   const handleVideoUpload = (event) => {
     setVideo(event.target.files[0]);
@@ -20,15 +21,25 @@ export default function Home() {
     formData.append("insurance", insurance);
     formData.append("policeStation", policeStation);
     formData.append("video", video);
-  
+
     images.forEach((image, index) => {
       formData.append(`image_${index}`, image);
     });
-  
-    // Submit formData to the server using fetch or axios
+
+    // Simulate form submission
     console.log([...formData.entries()]);
+
+    // Show toast message
+    toast.success('Хүсэлт амжилттай илгээгдлээ!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
-  
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -56,14 +67,14 @@ export default function Home() {
 
       {/* Main Content */}
       <a href={"./"}>
-      <div className="text-black flex underline " >
-      <IoArrowBackCircleSharp className="mt-1 text-[20px]" />    Нүүр хуудас
-      </div>
+        <div className="text-black flex underline " >
+          <IoArrowBackCircleSharp className="mt-1 text-[20px]" /> Нүүр хуудас
+        </div>
       </a>
       <main className="py-16 lg:px-[15%] px-[10px] min-h-[75vh]">
         <h1 className="text-black text-4xl font-bold text-center">Ослын талаарх хүсэлт</h1>
         <p className="text-gray-700 text-center mt-4">
-        Осол, аваартай холбоотой бичлэгийг оруулна уу?
+          Осол, аваартай холбоотой бичлэгийг оруулна уу?
         </p>
 
         {/* Form Section */}
@@ -82,34 +93,34 @@ export default function Home() {
             />
           </div>
           {video && (
-  <video controls className="mt-4">
-    <source src={URL.createObjectURL(video)} type={video.type} />
-  </video>
-)}
+            <video controls className="mt-4">
+              <source src={URL.createObjectURL(video)} type={video.type} />
+            </video>
+          )}
+          
           <div className="mb-6">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="image">
               Ослын талаарх зургууд
             </label>
             <input
-  type="file"
-  id="image"
-  accept="image/*"
-  multiple
-  onChange={(e) => setImages(Array.from(e.target.files))}
-  className="block w-full border rounded p-2 "
-/>
+              type="file"
+              id="image"
+              accept="image/*"
+              multiple
+              onChange={(e) => setImages(Array.from(e.target.files))}
+              className="block w-full border rounded p-2 "
+            />
 
-{images.length > 0 &&
-  images.map((img, idx) => (
-    <img
-      key={idx}
-      src={URL.createObjectURL(img)}
-      alt={`Uploaded ${idx}`}
-      className="mt-4 w-32 h-32 object-cover"
-    />
-  ))}
-
-
+            {images.length > 0 &&
+              images.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={URL.createObjectURL(img)}
+                  alt={`Uploaded ${idx}`}
+                  className="mt-4 w-32 h-32 object-cover"
+                />
+              ))
+            }
           </div>
 
           {/* Insurance Dropdown */}
@@ -154,6 +165,7 @@ export default function Home() {
               <option value="Налайх ЗЦГ">Налайх ЗЦГ</option>
             </select>
           </div>
+
           <div className="mb-6">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="Unelgee">
               Үнэлгээний газар 
@@ -165,11 +177,11 @@ export default function Home() {
               className="block text-black w-full border rounded p-2"
             >
               <option value="">-- Үнэлгээний газар сонгох --</option>
-              <option className="text-black" value="Khasunelgee ">Хас үнэлгээ</option>
-              <option className="text-black" value="Ashidunelgee">Ашид үнэлгээ</option>
-              <option className="text-black" value="Sundunelgee">Сүнд үнэлгээ</option>
-              <option className="text-black" value="Tentsverunelgee">Тэнцвэр үнэлгээ</option>
-              <option className="text-black" value="Ontsgoiungelgee">Онцгой үнэлгээ</option>
+              <option value="Khasunelgee">Хас үнэлгээ</option>
+              <option value="Ashidunelgee">Ашид үнэлгээ</option>
+              <option value="Sundunelgee">Сүнд үнэлгээ</option>
+              <option value="Tentsverunelgee">Тэнцвэр үнэлгээ</option>
+              <option value="Ontsgoiungelgee">Онцгой үнэлгээ</option>
             </select>
           </div>
 
@@ -187,8 +199,11 @@ export default function Home() {
 
       {/* Footer Section */}
       <footer className="mt-[150px] bg-blue-500 py-4 text-center text-white">
-        <p className="text-sm">&copy; 2024 Замын Хөдөлгөөний Нэгдсэн Мэдээллийн Сан. Бүх эрх хуулиар хамгаалагдсан.</p>
+        <p>&copy; 2024 Хакатон-2024. Бүх эрх хуулиар хамгаалагдсан.</p>
       </footer>
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 }
