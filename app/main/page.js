@@ -6,6 +6,8 @@ export default function Home() {
   const [insurance, setInsurance] = useState("");
   const [policeStation, setPoliceStation] = useState("");
   const [video, setVideo] = useState(null);
+  const [images, setImages] = useState([]);
+
 
   const handleVideoUpload = (event) => {
     setVideo(event.target.files[0]);
@@ -13,9 +15,19 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic
-    console.log({ insurance, policeStation, video });
+    const formData = new FormData();
+    formData.append("insurance", insurance);
+    formData.append("policeStation", policeStation);
+    formData.append("video", video);
+  
+    images.forEach((image, index) => {
+      formData.append(`image_${index}`, image);
+    });
+  
+    // Submit formData to the server using fetch or axios
+    console.log([...formData.entries()]);
   };
+  
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -25,7 +37,7 @@ export default function Home() {
           <Image 
             src="https://lh6.googleusercontent.com/proxy/uCT5REi7Ogmqno9e08qzG8ALwU6ZciWybbtNV9pa0MTCbxRBowNQMHTBWQUs4CXMkSyu7CHB5CMfLaT1OaYj19bdrrGnJUTv8vace1UEWiE" 
             alt="Organization Logo" 
-            width={350} 
+            width={200} 
             height={80} 
           />
           <Image 
@@ -42,14 +54,14 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="py-16 px-[15%]">
+      <main className="py-16 px-[15%] min-h-[75vh]">
         <h1 className="text-black text-4xl font-bold text-center">Ослын талаарх хүсэлт</h1>
         <p className="text-gray-700 text-center mt-4">
         Осол, аваартай холбоотой бичлэгийг оруулна уу?
         </p>
 
         {/* Form Section */}
-        <form onSubmit={handleSubmit} className="mt-12 bg-white p-8 rounded shadow-md">
+        <form onSubmit={handleSubmit} className="mt-12 bg-white p-8 rounded-[20px] shadow-md">
           {/* Video Upload */}
           <div className="mb-6">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="video">
@@ -63,6 +75,36 @@ export default function Home() {
               className="block w-full border rounded p-2"
             />
           </div>
+          {video && (
+  <video controls className="mt-4">
+    <source src={URL.createObjectURL(video)} type={video.type} />
+  </video>
+)}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="image">
+              Ослын талаарх зургууд
+            </label>
+            <input
+  type="file"
+  id="image"
+  accept="image/*"
+  multiple
+  onChange={(e) => setImages(Array.from(e.target.files))}
+  className="block w-full border rounded p-2 "
+/>
+
+{images.length > 0 &&
+  images.map((img, idx) => (
+    <img
+      key={idx}
+      src={URL.createObjectURL(img)}
+      alt={`Uploaded ${idx}`}
+      className="mt-4 w-32 h-32 object-cover"
+    />
+  ))}
+
+
+          </div>
 
           {/* Insurance Dropdown */}
           <div className="mb-6">
@@ -73,7 +115,7 @@ export default function Home() {
               id="insurance"
               value={insurance}
               onChange={(e) => setInsurance(e.target.value)}
-              className="block w-full border rounded p-2"
+              className="block w-full border rounded p-2 text-black"
             >
               <option value="">-- Даатгалын компани сонгох --</option>
               <option value="Монгол даатгал">Монгол даатгал</option>
@@ -88,14 +130,14 @@ export default function Home() {
 
           {/* Police Station Dropdown */}
           <div className="mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="policeStation">
+            <label className="block text-gray-700 font-bold mb-2 " htmlFor="policeStation">
               Замын цагдаагийн хэлтэс
             </label>
             <select
               id="policeStation"
               value={policeStation}
               onChange={(e) => setPoliceStation(e.target.value)}
-              className="block w-full border rounded p-2"
+              className="block w-full border rounded p-2 text-black"
             >
               <option value="">-- Цагдаагийн газар сонгох --</option>
               <option value="БЗД ЗЦГ">БЗД ЗЦГ</option>
@@ -114,14 +156,14 @@ export default function Home() {
               id="Unelgee"
               value={policeStation}
               onChange={(e) => setPoliceStation(e.target.value)}
-              className="block w-full border rounded p-2"
+              className="block text-black w-full border rounded p-2"
             >
               <option value="">-- Үнэлгээний газар сонгох --</option>
-              <option value="Khasunelgee">Хас үнэлгээ</option>
-              <option value="Ashidunelgee">Ашид үнэлгээ</option>
-              <option value="Sundunelgee">Сүнд үнэлгээ</option>
-              <option value="Tentsverunelgee">Тэнцвэр үнэлгээ</option>
-              <option value="Ontsgoiungelgee">Онцгой үнэлгээ</option>
+              <option className="text-black" value="Khasunelgee ">Хас үнэлгээ</option>
+              <option className="text-black" value="Ashidunelgee">Ашид үнэлгээ</option>
+              <option className="text-black" value="Sundunelgee">Сүнд үнэлгээ</option>
+              <option className="text-black" value="Tentsverunelgee">Тэнцвэр үнэлгээ</option>
+              <option className="text-black" value="Ontsgoiungelgee">Онцгой үнэлгээ</option>
             </select>
           </div>
 
